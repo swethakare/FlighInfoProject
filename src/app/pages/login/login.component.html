@@ -1,12 +1,16 @@
 <div class="login-page">
     <h1 class="heading">Authentication Form</h1>
     <div class="form">
-        <form class="login-form">
-            <input type="text" name="usename" [(ngModel)]="loginObj.username" placeholder="username" />
-            <input type="password" name="password" [(ngModel)]= "loginObj.password" placeholder="password" />
-            <button (click)="onLogin()">login</button>
-            <div *ngIf="errorMessage" class="error-message">{{errorMessage}}</div>
+        <form class="login-form" (ngSubmit)="onLogin()">
+            <label for="username" class="labletext">Username</label>
+            <input type="text" id="username" name="username" [(ngModel)]="loginObj.username" placeholder="Username" />
+
+            <label for="password" class="labletext">Password</label>
+            <input type="password" id="password" name="password" [(ngModel)]="loginObj.password"
+                placeholder="Password" />
+
+            <button type="submit">Login</button>
+            <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
         </form>
-    
     </div>
 </div>

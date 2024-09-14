@@ -1,18 +1,50 @@
 <div class="flight-page">
     <h1 class="heading">Flight Information Form</h1>
     <div class="form">
-        <form class="login-form">
-            <input type="text" name="airline" [(ngModel)]="flightObj.airline" placeholder="airline" />
-            <input type="text" name="arrivalDate" [(ngModel)]= "flightObj.arrivalDate" placeholder="arrivalDate" />
-            <input type="text" name="arrivalTime" [(ngModel)]="flightObj.arrivalTime" placeholder="arrivalTime" />
-            <input type="text" name="flightNumber" [(ngModel)]= "flightObj.flightNumber" placeholder="flightNumber" />
-            <input type="text" name="numOfGuests" [(ngModel)]="flightObj.numOfGuests" placeholder="numOfGuests" />
-            <input type="text" name="comments" [(ngModel)]= "flightObj.comments" placeholder="comments" />
-            <button (click)="onSubmit()">Submit</button>
+        <form class="login-form" (ngSubmit)="onSubmit(flightForm)" #flightForm="ngForm">
+            <label for="airline" class="labletext">Airline Name</label>
+            <input type="text" name="airline" [(ngModel)]="flightObj.airline" placeholder="Airline Name" />
+            <br>
+
+            <label for="arrivalDate" class="labletext">Arrival Date</label>
+            <input type="text" name="arrivalDate" [(ngModel)]="flightObj.arrivalDate"
+                placeholder="Arrival Date (YYYY-MM-DD)" required #arrivalDate="ngModel" pattern="\d{4}-\d{2}-\d{2}" />
+            <div *ngIf="arrivalDate.invalid && (arrivalDate.dirty || arrivalDate.touched)" class="error-message">
+                <div *ngIf="arrivalDate.errors?.['required']">Arrival Date is required.</div>
+                <div *ngIf="arrivalDate.errors?.['pattern']">Invalid date format. Use YYYY-MM-DD.</div>
+            </div>
+            <br>
+
+            <label for="arrivalTime" class="labletext">Arrival Time</label>
+            <input type="text" name="arrivalTime" [(ngModel)]="flightObj.arrivalTime" placeholder="Arrival Time (HH:MM)"
+                required #arrivalTime="ngModel" pattern="\d{2}:\d{2}" />
+            <div *ngIf="arrivalTime.invalid && (arrivalTime.dirty || arrivalTime.touched)" class="error-message">
+                <div *ngIf="arrivalTime.errors?.['required']">Arrival Time is required.</div>
+                <div *ngIf="arrivalTime.errors?.['pattern']">Invalid time format. Use HH:MM.</div>
+            </div>
+            <br>
+
+            <label for="flightNumber" class="labletext">Flight Number</label>
+            <input type="text" name="flightNumber" [(ngModel)]="flightObj.flightNumber" placeholder="Flight Number" />
+            <br>
+
+            <label for="numOfGuests" class="labletext">Number Of Guests</label>
+            <input type="text" name="numOfGuests" [(ngModel)]="flightObj.numOfGuests" placeholder="Number Of Guests"
+                required #numOfGuests="ngModel" pattern="\d+" />
+            <div *ngIf="numOfGuests.invalid && (numOfGuests.dirty || numOfGuests.touched)" class="error-message">
+                <div *ngIf="numOfGuests.errors?.['required']">Number Of Guests is required.</div>
+                <div *ngIf="numOfGuests.errors?.['pattern']">Only numbers are allowed.</div>
+            </div>
+            <br>
+
+            <label for="comments" class="labletext">Comments</label>
+            <input type="text" name="comments" [(ngModel)]="flightObj.comments" placeholder="Comments" />
+            <br>
+
+            <button type="submit" [disabled]="flightForm.invalid">Submit</button>
             <div *ngIf="errorMessage" class="error-message">
                 {{ errorMessage }}
             </div>
         </form>
     </div>
 </div>
-

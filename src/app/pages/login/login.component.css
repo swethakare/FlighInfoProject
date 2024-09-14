@@ -7,7 +7,9 @@
     color: white;
 
 }
-
+.labletext{
+  font-weight: 500;
+}
 .login-page {
   width: 360px;
   padding: 8% 0 0;

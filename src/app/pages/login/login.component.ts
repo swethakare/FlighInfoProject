@@ -8,7 +8,7 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule,CommonModule],
+  imports: [FormsModule, CommonModule],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
@@ -25,7 +25,6 @@ export class LoginComponent {
   authService = inject(AuthService);
 
   validate(): boolean {
-    debugger
     if (this.loginObj.username.trim() === "" || this.loginObj.password.trim() === "") {
       this.errorMessage = "Both Username and Password fields are required.";
       return false;
@@ -39,7 +38,8 @@ export class LoginComponent {
       return;
     }
 
-    this.http.get('/assets/user.json').subscribe((users: any) => {
+    this.http.get('./assets/user.json').subscribe((users: any) => {
+      debugger
       const user = users.find((u: any) => u.username === this.loginObj.username && u.password === this.loginObj.password);
       if (user) {
         this.authService.setUserLoggedIn(true);

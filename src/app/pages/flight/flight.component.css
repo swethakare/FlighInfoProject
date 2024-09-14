@@ -51,6 +51,9 @@
 .form button:hover,.form button:active,.form button:focus {
   background: #43A047;
 }
+.labletext{
+  font-weight: 500;
+}
 .form .message {
   margin: 15px 0 0;
   color: #b3b3b3;
@@ -101,3 +104,6 @@
   font-size: 1rem;
   margin-top: 0.5em;
 }
+
+
+ 
