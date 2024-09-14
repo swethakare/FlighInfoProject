@@ -19,7 +19,9 @@ To Login use one of the following credentials
 
 # Flight Information Form
 
-on getting successful authentication input the flight information details and it would be posted to the server
-on Sucess 200 ok message and successful redirect to the new success page occurs
-on failure the error message is displayed and the submit is forbidden
+On successful authentication input the flight information details and it would be posted to the server.
+
+On Success 200 status code with a redirection to the new success page occurs.
+
+On failure, the error message is displayed and the submit is forbidden.
 
